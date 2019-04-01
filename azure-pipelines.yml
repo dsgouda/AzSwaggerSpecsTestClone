@@ -83,6 +83,16 @@ jobs:
   - script: 'node scripts/momentOfTruth.js && node scripts/momentOfTruthPostProcessing.js'
     displayName: 'LintDiff'
 
+- job: "DotNetSdk"
+  variables:
+    NODE_OPTIONS: '--max-old-space-size=8192'
+  pool:
+    vmImage: 'VS2017-Win2016'
+  steps:
+  - task: CmdLine@1
+  - script: scripts\stostools\LaunchSToS.bat scripts\stostools\SToS.proj %ghprbPullId% %ghprbActualCommit% %GIT_URL% %CustomComment% false n
+    displayName: '.NET Sdk PR Automation job'
+
 - job: "SDK"
   timeoutInMinutes: 120
   strategy:

@@ -7,7 +7,7 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
- - task: CmdLine@1
-   inputs:
-     filename: stostools\LaunchSToS.bat
-     arguments: stostools\stos.proj %ghprbPullId% %ghprbActualCommit% %GIT_URL% %CustomComment% false n
+
+- task: CmdLine@1
+  inputs:
+    filename: set

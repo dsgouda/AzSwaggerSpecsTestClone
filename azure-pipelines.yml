@@ -8,6 +8,7 @@ pool:
 
 steps:
 
-- task: CmdLine@1
-  inputs:
-    filename: set
+ - task: CmdLine@1
+   inputs:
+     filename: scripts\stostools\LaunchSToS.bat
+     arguments: scripts\stostools\stos.proj %SYSTEM_PULLREQUEST_PULLREQUESTNUMBER% %SYSTEM_PULLREQUEST_SOURCECOMMITID% %SYSTEM_PULLREQUEST_SOURCEREPOSITORYURI% %CustomComment% false n

@@ -7,6 +7,9 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
-  - task: CmdLine@1
+  - task: DotNetCoreCLI@1
+    name: 'Swagger to SDK build'
     inputs:
-      filename: set
+      command: msbuild build
+      projects: scripts\stostools\SToS.proj
+      arguments: '/t:StartNetSdkCodeGeneration /v:n /p:githubprnumber=$(System.PullRequest.PullRequestNumber) /p:githubcommitid=$(something) /p:giturl=$(System.PullRequest.SourceRepositoryURI) /p:DebugMode=false /p:triggercomment=""'

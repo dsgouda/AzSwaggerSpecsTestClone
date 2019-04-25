@@ -14,7 +14,10 @@ steps:
 
   - script: npm install autorest -g
     displayName: Install autorest
-    
+
+  - script: node --version
+    displayName: What node version
+
   - task: MSBuild@1
     name: 'Swagger_to_SDK_build'
     inputs:

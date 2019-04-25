@@ -8,7 +8,7 @@ pool:
 
 variables:
   TriggerComment: "Dummy comment will be removed"
-  SwagToSdkGenArgs: /t:StartNetSdkCodeGeneration /v:n /p:githubprnumber=$(System.PullRequest.PullRequestNumber) /p:githubcommitid=$(Build.SourceVersion) /p:giturl=$(System.PullRequest.SourceRepositoryURI) /p:DebugMode=false /p:triggercomment=$(TriggerComment)
+  SwagToSdkGenArgs: /t:StartNetSdkCodeGeneration /v:n /p:githubprnumber=$(System.PullRequest.PullRequestNumber) /p:githubcommitid=$(Build.SourceVersion) /p:giturl=$(System.PullRequest.SourceRepositoryURI) /p:DebugMode=false /p:triggercomment="$(TriggerComment)"
 
 steps:
   - task: Npm@1

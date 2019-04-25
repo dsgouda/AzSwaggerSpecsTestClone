@@ -6,6 +6,10 @@ pr:
 pool:
   vmImage: 'VS2017-Win2016'
 
+variables:
+  TriggerComment: "Dummy comment will be removed"
+  SwagToSdkGenArgs: /t:StartNetSdkCodeGeneration /v:n /p:githubprnumber=$(System.PullRequest.PullRequestNumber) /p:githubcommitid=$(Build.SourceVersion) /p:giturl=$(System.PullRequest.SourceRepositoryURI) /p:DebugMode=false /p:triggercomment=$(TriggerComment)
+
 steps:
   - task: Npm@1
     displayName: 'npm install'
@@ -15,11 +19,8 @@ steps:
   - script: npm install autorest -g
     displayName: Install autorest
 
-  - script: node --version
-    displayName: What node version
-
   - task: MSBuild@1
     name: 'Swagger_to_SDK_build'
     inputs:
-      msbuildArguments: /t:StartNetSdkCodeGeneration /v:n /p:githubprnumber=$(System.PullRequest.PullRequestNumber) /p:githubcommitid=$(something) /p:giturl=$(System.PullRequest.SourceRepositoryURI) /p:DebugMode=false /p:triggercomment=""
+      msbuildArguments: $(SwagToSdkGenArgs)
       solution: scripts\stostools\SToS.proj

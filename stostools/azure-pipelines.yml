@@ -7,6 +7,14 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      verbose: false
+
+  - script: npm install autorest -g
+    displayName: Install autorest
+    
   - task: MSBuild@1
     name: 'Swagger_to_SDK_build'
     inputs:
